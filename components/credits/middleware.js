@@ -25,8 +25,7 @@ const validateClientStore = async (req, res, next) => { // Client-Store relation
             return res.status(404).send({ message: `No store ${client} or client ${store} combination found` })
         }
     } catch (error) {
-        ['development', 'test'].includes(process.env.NODE_ENV.toLowerCase()) || cliArgs.get('log') ? console.error(error) : null
-        return res.status(500).send({ message: 'Unespected server error' })
+        next(error)
     }
 }
 

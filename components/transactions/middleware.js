@@ -6,7 +6,7 @@ const getInputs = [ //Input validators
     query('store').optional().isString().trim().isLength({ min: 1, max: 64 }), query('user').optional().isString().trim().isLength({ min: 1, max: 64 }), header('Authorization').notEmpty().isString()
 ]
 
-const translateQueryToId = async (req, res, next) => { // Client-Store relation validation
+const translateQueryToId = async (req, res, next) => { // Save filters info in req 
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -37,8 +37,7 @@ const translateQueryToId = async (req, res, next) => { // Client-Store relation 
         }
         return next()
     } catch (error) {
-        ['development', 'test'].includes(process.env.NODE_ENV.toLowerCase()) || cliArgs.get('log') ? console.error(error) : null
-        return res.status(500).send({ message: 'Unespected server error' })
+        next(error)
     }
 }
 

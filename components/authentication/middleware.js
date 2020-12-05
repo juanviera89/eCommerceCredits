@@ -9,7 +9,7 @@ const getInputs = [ //Input validators
     header('Authorization').notEmpty().isString()
 ]
 
-const validateUserAuth = async (req, res, next) => { // Client-Store relation validation
+const validateUserAuth = async (req, res, next) => { 
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -35,9 +35,7 @@ const validateUserAuth = async (req, res, next) => { // Client-Store relation va
             return res.status(403).send({ message: `Invalid Access token` })
         }
     } catch (error) {
-        ['development', 'test'].includes(process.env.NODE_ENV.toLowerCase()) || cliArgs.get('log') ? console.error(error) : null
-        // TODO next(error)
-        return res.status(500).send({ message: 'Unespected server error' })
+        next(error)
     }
 }
 

@@ -13,10 +13,8 @@ const storeCredits = async (req, res, next) => {
             credits: result
         })
     } catch (error) {
-        ['development', 'test'].includes(process.env.NODE_ENV.toLowerCase()) || cliArgs.get('log') ? console.error(error) : null
-        return res.status(500).send({ message: 'Unespected server error' })
+        next(error)
     }
-
 }
 
 const addStoreCredits = async (req, res, next) => {
@@ -41,8 +39,7 @@ const addStoreCredits = async (req, res, next) => {
             message: 'Store credits updated'
         })
     } catch (error) {
-        ['development', 'test'].includes(process.env.NODE_ENV.toLowerCase()) || cliArgs.get('log') ? console.error(error) : null
-        return res.status(500).send({ message: 'Unespected server error' })
+        next(error)
     }
 }
 
@@ -72,7 +69,7 @@ const substractStoreCredits = async (req, res, next) => {
             message: 'Store credits updated'
         })
     } catch (error) {
-        return res.status(500).send({ message: 'Unespected server error' })
+        next(error)
     }
 }
 

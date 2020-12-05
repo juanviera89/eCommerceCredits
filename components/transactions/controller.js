@@ -13,8 +13,7 @@ const transactionHistory = async (req, res, next) => {
             history: foundTransactions
         })
     } catch (error) {
-        ['development', 'test'].includes(process.env.NODE_ENV.toLowerCase()) || cliArgs.get('log') ? console.error(error) : null
-        return res.status(500).send({ message: 'Unespected server error' })
+        next(error)
     }
 
 }
