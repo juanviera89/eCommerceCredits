@@ -23,7 +23,7 @@ const initModels = (sequelize) => {
     models.store.hasOne(models.credit);
     models.credit.belongsTo(models.store, { 
         foreignKey:  'id' ,
-        as: 'storeCredits'
+        as: 'storeCredits', key : 'id'
         });
 }
 
