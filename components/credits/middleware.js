@@ -14,7 +14,7 @@ const validateClientStore = async (req, res, next) => { // Client-Store relation
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array(), message: `Request's inputs have one or more errors` });
+            return res.status(400).json({ errors: errors.array(), message: `Request's inputs contains one or more errors` });
         }
         const { client, store } = req.query;
         const foundStore = await models.client.findOne({ where: { email: client }, include: { model: models.store, where: { name: store } } });

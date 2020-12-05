@@ -13,7 +13,7 @@ const validateUserAuth = async (req, res, next) => { // Client-Store relation va
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array(), message: `Request's inputs have one or more errors` });
+            return res.status(400).json({ errors: errors.array(), message: `Request's inputs contains one or more errors` });
         }
         const token = `${req.header('Authorization')}`.replace(/Bearer/g, '').trim()
         const signing = `${jwt.sign({ access_token: 'none' }, config.get('tokenSecret'), { expiresIn: 1 })}`.split('.')[0]

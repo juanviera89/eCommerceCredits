@@ -19,6 +19,12 @@ const methods = { //Solo informativo para ayudar en la generacion de Swagger
                 type: 'string',
                 required: true
             }
+        },
+        header: {
+            Authorization: {
+                type: 'string',
+                required: true
+            }
         }
     },
     POST: {
@@ -35,6 +41,12 @@ const methods = { //Solo informativo para ayudar en la generacion de Swagger
                 type: 'number',
                 required: true
             }
+        },
+        header: {
+            Authorization: {
+                type: 'string',
+                required: true
+            }
         }
     },
     DELETE: {
@@ -49,6 +61,12 @@ const methods = { //Solo informativo para ayudar en la generacion de Swagger
             },
             amount: {
                 type: 'number',
+                required: true
+            }
+        },
+        header: {
+            Authorization: {
+                type: 'string',
                 required: true
             }
         }
