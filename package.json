@@ -1,0 +1,53 @@
+{
+  "name": "ecommercecredits",
+  "version": "1.0.0",
+  "description": "API REST for users credits management",
+  "main": "index.js",
+  "scripts": {
+    "run": "node index.js",
+    "nodemon" : "nodemon index.js",
+    "test": "mocha --recursive \\\"components/**/*.test.js\\\" --inline-diffs",
+    "testserver": "mocha --recursive \\\"router/routes/**/*.test.js\\\" --inline-diffs "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanviera89/eCommerceCredits.git"
+  },
+  "keywords": [
+    "TEST",
+    "ecommerce",
+    "credits",
+    "api",
+    "rest"
+  ],
+  "author": "Juan D. Viera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanviera89/eCommerceCredits/issues"
+  },
+  "homepage": "https://github.com/juanviera89/eCommerceCredits#readme",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "body-parser": "^1.19.0",
+    "config": "^3.3.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.2.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "rfr": "^1.2.3",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.6"
+  },
+  "mocha": {
+    "spec": "*.test.js",
+    "recursive": true
+  }
+}
