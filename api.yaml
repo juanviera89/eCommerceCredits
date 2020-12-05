@@ -1,0 +1,215 @@
+swagger: "2.0"
+info:
+  description: "MVP API Rest for store's credits management"
+  version: "1.0.0"
+  title: "eCommerce Credits"
+  contact:
+    email: "juanviera89@gmail.com"
+  license:
+    name: "ISC"
+host: "petstore.swagger.io"
+basePath: "/"
+tags:
+- name: "auth"
+  description: "Authentication endpoint to get access token, needed in most other endpoints"
+- name: "credits"
+  description: "Endpoints for getting, adding and removing store's credits"
+- name: "health"
+  description: "Endpoints for validating server connection"
+- name: "transactions"
+  description: "Support endpoint to get info about transactions made over store's credits"
+schemes:
+- "https"
+- "http"
+paths:
+  /credits:
+    post:
+      tags:
+      - "credits"
+      summary: "Add credits to a store"
+      description: ""
+      operationId: "addStoreCredits"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "client"
+        description: "Client email"
+        required: true
+        type: "string"
+      - in: "query"
+        name: "store"
+        description: "store Name"
+        required: true
+        type: "string"
+      - in: "query"
+        name: "amount"
+        description: "Credits amount to add"
+        required: true
+        type: "number"
+      - in: "header"
+        name: "Authorization"
+        description: "Bearer token obtained from auth"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: object
+            properties:
+              message: 
+                type: "string"
+              credits: 
+                type: "number"
+        "403":
+          description: "Not authorized"
+          schema:
+            type: object
+            properties:
+              message : 
+                type: "string"
+        "404":
+          description: "Client / Store combination not in DB"
+          schema:
+            type: object
+            properties:
+              message : 
+                type: "string"
+    delete:
+      tags:
+      - "credits"
+      summary: "Substract credits from a store"
+      description: ""
+      operationId: "substractStoreCredits"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "client"
+        description: "Client email"
+        required: true
+        type: "string"
+      - in: "query"
+        name: "store"
+        description: "store Name"
+        required: true
+        type: "string"
+      - in: "query"
+        name: "amount"
+        description: "Credits amount to add"
+        required: true
+        type: "number"
+      - in: "header"
+        name: "Authorization"
+        description: "Bearer token obtained from auth"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: object
+            properties:
+              message : 
+                type: "string"
+              credits: 
+                type: "number"
+        "403":
+          description: "Not authorized"
+          schema:
+            type: object
+            properties:
+              message : 
+                type: "string"
+        "404":
+          description: "Client / Store combination not in DB"
+          schema:
+            type: object
+            properties:
+              message : 
+                type: "string"
+        "409":
+          description: "Insuficient fund in store credits."
+          schema:
+            type: object
+            properties:
+              message : 
+                type: "string"
+    get:
+      tags:
+      - "credits"
+      summary: "get current credits from a store"
+      description: ""
+      operationId: "storeCredits"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "client"
+        description: "Client email"
+        required: true
+        type: "string"
+      - in: "query"
+        name: "store"
+        description: "store Name"
+        required: true
+        type: "string"
+      - in: "header"
+        name: "Authorization"
+        description: "Bearer token obtained from auth"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: object
+            properties:
+              message : 
+                type: "string"
+              credits: 
+                type: "number"
+        "403":
+          description: "Not authorized"
+          schema:
+            type: object
+            properties:
+              message : 
+                type: "string"
+  /auth:
+    get:
+      tags:
+      - "auth"
+      summary: "Get access token"
+      description: "Authentication made by using Basic Authorization header"
+      operationId: "Authentication"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        description: "Basic Authorization header"
+        required: true
+        type: "string"
+        items:
+          type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: object
+            properties:
+              message : 
+                type: "string"
+              authToken: 
+                type: "string"
+        "403":
+          description: "Invalid status value"
+          schema:
+            type: object
+            properties:
+              message : 
+                type: "string"
+              authToken: 
+                type: "string"

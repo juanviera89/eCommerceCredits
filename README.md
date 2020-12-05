@@ -61,7 +61,7 @@ root
 
 ## Project Navigation Map
 
-Endpoints are described in [swagger json file](./apiGw.json) \([test](./apiGw.json)\) following the [OPEN API 2.0](https://swagger.io/specification/) rules.
+Endpoints are described in [swagger yaml](./api.yaml) following the [OPEN API 2.0](https://swagger.io/specification/) rules.
 
 After server init, console will display routes definition made by router autoloader description exporter
 
