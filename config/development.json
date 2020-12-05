@@ -6,5 +6,6 @@
         "secret" : "root",
         "dbname" : "ecommerce-credits",
         "dialect" : "postgres"
-    }
+    },
+    "tokenSecret" : "a67e8b541e3f5b0deac4465e2dfe9995"
 }

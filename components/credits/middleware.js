@@ -1,13 +1,13 @@
 const rfr = require('rfr');
 const models = rfr('db/models').models;
-const { validationResult, query } = require('express-validator');
+const { validationResult, query, header } = require('express-validator');
 
 const getInputs = [ //Input validators
-    query('client').notEmpty().isEmail().trim(), query('store').notEmpty().isString().trim().isLength({ min: 1, max: 64 })
+    query('client').notEmpty().isEmail().trim(), query('store').notEmpty().isString().trim().isLength({ min: 1, max: 64 }), header('Authorization').notEmpty().isString()
 ], deleteInputs = [
-    query('client').notEmpty().isEmail().trim(), query('store').notEmpty().isString().trim().isLength({ min: 1, max: 64 }), query('amount').notEmpty().isNumeric()
+    query('client').notEmpty().isEmail().trim(), query('store').notEmpty().isString().trim().isLength({ min: 1, max: 64 }), query('amount').notEmpty().isNumeric(), header('Authorization').notEmpty().isString()
 ], postInput = [
-    query('client').notEmpty().isEmail().trim(), query('store').notEmpty().isString().trim().isLength({ min: 1, max: 64 }), query('amount').notEmpty().isNumeric()
+    query('client').notEmpty().isEmail().trim(), query('store').notEmpty().isString().trim().isLength({ min: 1, max: 64 }), query('amount').notEmpty().isNumeric(), header('Authorization').notEmpty().isString()
 ]
 
 const validateClientStore = async (req, res, next) => { // Client-Store relation validation
