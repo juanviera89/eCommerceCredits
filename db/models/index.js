@@ -18,7 +18,7 @@ const initModels = (sequelize) => {
     models.client.hasMany(models.store);
     models.store.belongsTo(models.client, { 
         foreignKey: 'id' ,
-        as: 'clientStore'
+        as: 'clientStore', key : 'id'
         });
     models.store.hasOne(models.credit);
     models.credit.belongsTo(models.store, { 

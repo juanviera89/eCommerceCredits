@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "run": "node index.js",
-    "nodemon" : "nodemon index.js",
+    "nodemon": "nodemon index.js",
     "test": "mocha --recursive \\\"components/**/*.test.js\\\" --inline-diffs",
     "testserver": "mocha --recursive \\\"router/routes/**/*.test.js\\\" --inline-diffs "
   },
@@ -32,6 +32,7 @@
     "config": "^3.3.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-validator": "^6.7.0",
     "helmet": "^4.2.0",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^8.2.1",
