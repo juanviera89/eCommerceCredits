@@ -29,13 +29,14 @@ const validateUserAuth = async (req, res, next) => { // Client-Store relation va
         }
         const foundToken = await models.access_token.findOne({attributes: ['creation_date', 'token'],  where: { token: access_token }, include: { model: models.user, as : 'userToken'  } });
         if (foundToken ) {
-            res.userInfo = foundToken.userToken;
+            req.userInfo = foundToken.userToken;
             return next()
         } else {
             return res.status(403).send({ message: `Invalid Access token` })
         }
     } catch (error) {
         ['development', 'test'].includes(process.env.NODE_ENV.toLowerCase()) || cliArgs.get('log') ? console.error(error) : null
+        // TODO next(error)
         return res.status(500).send({ message: 'Unespected server error' })
     }
 }

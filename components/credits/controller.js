@@ -13,6 +13,7 @@ const storeCredits = async (req, res, next) => {
             credits: result
         })
     } catch (error) {
+        ['development', 'test'].includes(process.env.NODE_ENV.toLowerCase()) || cliArgs.get('log') ? console.error(error) : null
         return res.status(500).send({ message: 'Unespected server error' })
     }
 
@@ -31,11 +32,16 @@ const addStoreCredits = async (req, res, next) => {
         if (! (update && update[0])) {
             return res.status(500).send({ message : `Store's credits could not be updated` })
         }
+        const history = await models.transaction.create({type : 1, amount : Math.floor(Math.abs(amount)), userId : req.userInfo.id, storeId : req.storeInfo.id },{ returning: ['id']  });
+        if (!history && !history.id) {
+            console.error(`Could not save history for adding transaction on store: ${store}. Amount: ${amount}`);
+        }
         return res.send({
             credits,
             message: 'Store credits updated'
         })
     } catch (error) {
+        ['development', 'test'].includes(process.env.NODE_ENV.toLowerCase()) || cliArgs.get('log') ? console.error(error) : null
         return res.status(500).send({ message: 'Unespected server error' })
     }
 }
@@ -56,6 +62,10 @@ const substractStoreCredits = async (req, res, next) => {
         const update = await models.credit.update({ credits: newCredits }, { where: { id } })
         if (! (update && update[0])) {
             return res.status(500).send({ message : `Store's credits could not be updated` })
+        }
+        const history = await models.transaction.create({type : 0, amount : Math.floor(Math.abs(amount)), userId : req.userInfo.id, storeId : req.storeInfo.id },{ returning: ['id']  });
+        if (!history && !history.id) {
+            console.error(`Could not save history for adding transaction on store: ${store}. Amount: ${amount}`);
         }
         return res.send({
             credits: newCredits,
