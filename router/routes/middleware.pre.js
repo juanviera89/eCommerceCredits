@@ -16,7 +16,6 @@ const cors = (req, res, next) => {
 
     // Pass to next layer of middleware
     if ('OPTIONS' == req.method) {
-        console.log('OPTIONS', res.getHeaders());
         return res.sendStatus(200);
       }
       else {

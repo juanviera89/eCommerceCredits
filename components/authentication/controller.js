@@ -26,9 +26,7 @@ const authorization = async (req, res, next) => {
         const token = jwt.sign({ access_token }, config.get('tokenSecret'), { expiresIn: '5m' });
         return res.send({
             message: 'Authentication successful',
-            authToken: `${token.split('.')[1]}.${token.split('.')[2]}`,
-            token :  jwt.verify(token, config.get('tokenSecret')),
-            token2: token
+            authToken: `${token.split('.')[1]}.${token.split('.')[2]}`
         })
     } catch (error) {
         next(error)

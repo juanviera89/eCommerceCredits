@@ -15,7 +15,6 @@ const translateQueryToId = async (req, res, next) => { // Save filters info in r
         const { user, store } = req.query;
         if (store) {
             const foundStore = await models.store.findOne({ where: { name: store }});
-            console.log('store found', store, foundStore);
             if (foundStore && foundStore.id) {
                 req.query.storeInfo = foundStore;
             } else {
@@ -26,7 +25,6 @@ const translateQueryToId = async (req, res, next) => { // Save filters info in r
         }
         if (user) {
             const foundUser = await models.user.findOne({ where: { email: user }});
-            console.log('user found', user, foundUser);
             if (foundUser && foundUser.id) {
                 req.query.userInfo = foundUser;
             } else {
