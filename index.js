@@ -25,6 +25,8 @@ const main = async () => {
     console.log('Connecting to DB')
     const db = require('./db');
     await db.authenticate()
+    require('./db/models').initModels(db);
+    await db.sync();
     console.log('Connected')
     console.log('====================================')
     console.log('Initializing routes')
@@ -41,6 +43,7 @@ const main = async () => {
     app.setReady('main')
     console.log(`Ecommerce Credits API listening:  ${HOST}:${PORT}!`)
     console.log('====================================')
+    //console.log( JSON.stringify(await require('./db/models').models.client.findAll({ include : require('./db/models').models.store })));
 
   } catch (error) {
     console.error('Fatal errror - Could Not initialize service')

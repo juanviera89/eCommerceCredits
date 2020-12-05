@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const { Sequelize } = require('sequelize');
 const config = require('config');
 const sequelize = new Sequelize(config.get('db.dbname'), config.get('db.username'), config.get('db.secret'), { 
     host: config.get('db.host'),
