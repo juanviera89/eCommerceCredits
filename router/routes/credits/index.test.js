@@ -39,7 +39,7 @@ describe('/credits', function () {
         })
         it('Should return a json object with error message and status 400 on client param malformation', function (done) {
             chai.request(app.getApp('main'))
-                .get(`/credits?client=NoEmail`).set('Authorization', bearer)
+                .get(`/credits?client=NoEmail&store=SomeStore`).set('Authorization', bearer)
                 .end((err, res) => {
                     const response = err ? err.response : res;
                     response.should.have.status(400);
@@ -62,7 +62,7 @@ describe('/credits', function () {
                     done();
                 });
         })
-        it('Should return a json object with transactions list and status 200 limited by user', function (done) {
+        it('Should return a json object with store`s credits and status 200', function (done) {
             chai.request(app.getApp('main'))
                 .get(`/credits?client=${client.email}&store=${store.name}`).set('Authorization', bearer)
                 .end((err, res) => {
@@ -71,6 +71,58 @@ describe('/credits', function () {
                     response.body.should.be.a('object');
                     const body = response.body
                     body.credits.should.be.a('number')
+                    done();
+                });
+        })
+    })
+    
+    describe('POST', function () {
+        before(function (done) {
+            chai.request(app.getApp('main'))
+            .get('/auth').set('Authorization', basic)
+                .end((err, res) => {
+                    const response = err ? err.response : res;
+                    const body = response.body
+                    bearer = `Bearer ${body.authToken}`;
+                    done();
+                });
+
+        })
+        it('Should return a json object with error message and status 400 on client param malformation', function (done) {
+            chai.request(app.getApp('main'))
+                .post(`/credits?client=NoEmail`).set('Authorization', bearer)
+                .end((err, res) => {
+                    const response = err ? err.response : res;
+                    response.should.have.status(400);
+                    response.body.should.be.a('object');
+                    const body = response.body
+                    body.message.should.be.a('string')
+                    done();
+                });
+        })
+        it('Should return a json object with error message on no client/store combination found and status 404', function (done) {
+            chai.request(app.getApp('main'))
+                .post(`/credits?client=noclient@email.cl&store=SomeStore&amount=5`).set('Authorization', bearer)
+                .end((err, res) => {
+                    const response = err ? err.response : res;
+                    response.should.have.status(404);
+                    response.body.should.be.a('object');
+                    const body = response.body
+                    body.message.should.be.a('string')
+
+                    done();
+                });
+        })
+        it('Should return a json object with transactions list and status 200 limited by user', function (done) {
+            chai.request(app.getApp('main'))
+                .post(`/credits?client=${client.email}&store=${store.name}&amount=5`).set('Authorization', bearer)
+                .end((err, res) => {
+                    const response = err ? err.response : res;
+                    response.should.have.status(200);
+                    response.body.should.be.a('object');
+                    const body = response.body
+                    body.credits.should.be.a('number')
+                    body.credits.should.gt(Number(credit.credits))
                     done();
                 });
         })
