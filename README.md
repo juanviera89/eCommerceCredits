@@ -107,11 +107,17 @@ Queries in this project are handled with ORM models by sequelize.
 
   To create a test file, name it with the format *.test.js
 
+## Manual Tests
+
+  Tests via postman can be made by importing the collection @ [PostmanCollection](./ecommerceCredits.postman_collection.json).
+
+  Request parameters required can be found @ [swagger yaml](./api.yaml)
+
 ## Deployment
 Deployment is made with AWS ECS and AWS ECR services.
 in order to build project for deployment, the following commands are executed: **AWS CLI is required to perform this actions**
  ***Must be previously logged with AWS CLI***
-1. aws ecr get-login --region us-east-1 --no-include-email
+1. aws ecr get-login --region us-east-2 --no-include-email
    *use login command result*
 2. docker build -t ecommerce-credits .
     *in root folder*

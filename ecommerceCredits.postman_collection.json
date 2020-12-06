@@ -1,0 +1,447 @@
+{
+	"info": {
+		"_postman_id": "b3f13c5d-64fe-4315-ae4d-202bc1189cf2",
+		"name": "ecommerceCredits",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authenticate User",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "oth3rPassw0rd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "support@ecredits.cl",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2020/auth",
+					"host": [
+						"localhost"
+					],
+					"port": "2020",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction History",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhY2Nlc3NfdG9rZW4iOiJmYWQ0ZWE1MDk5ZjY2ZjU3ZTcxYzExOTNiYzViZDg1NCIsImlhdCI6MTYwNzE5NTg2NywiZXhwIjoxNjA3NDk1ODY3fQ.Xy1gULymUO0gD4PsneRZddmpfrA_l8KDdHZkUAmQf8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2020/transactions?store=Maipu&user=support@ecredits.cl",
+					"host": [
+						"localhost"
+					],
+					"port": "2020",
+					"path": [
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "store",
+							"value": "Maipu"
+						},
+						{
+							"key": "user",
+							"value": "support@ecredits.cl"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Store credits info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhY2Nlc3NfdG9rZW4iOiJhMDczZDc5MTYzMzEzODc0YWNmMjY0ODk2MTA5OTU2MiIsImlhdCI6MTYwNzIwMzU2OSwiZXhwIjoxNjA3MjAzODY5fQ._p0d0C9ckdY-MbmIzisqlWR-GFIsJg6SP0PKSuIqEE0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2020/credits?client=admin@elektra.cl&store=Maipu",
+					"host": [
+						"localhost"
+					],
+					"port": "2020",
+					"path": [
+						"credits"
+					],
+					"query": [
+						{
+							"key": "client",
+							"value": "admin@elektra.cl"
+						},
+						{
+							"key": "store",
+							"value": "Maipu"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Store credits",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhY2Nlc3NfdG9rZW4iOiJhMDczZDc5MTYzMzEzODc0YWNmMjY0ODk2MTA5OTU2MiIsImlhdCI6MTYwNzIwMzU2OSwiZXhwIjoxNjA3MjAzODY5fQ._p0d0C9ckdY-MbmIzisqlWR-GFIsJg6SP0PKSuIqEE0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:2020/credits?client=admin@elektra.cl&store=Maipu&amount=2500500",
+					"host": [
+						"localhost"
+					],
+					"port": "2020",
+					"path": [
+						"credits"
+					],
+					"query": [
+						{
+							"key": "client",
+							"value": "admin@elektra.cl"
+						},
+						{
+							"key": "store",
+							"value": "Maipu"
+						},
+						{
+							"key": "amount",
+							"value": "2500500"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Substract Store credits",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhY2Nlc3NfdG9rZW4iOiJhMDczZDc5MTYzMzEzODc0YWNmMjY0ODk2MTA5OTU2MiIsImlhdCI6MTYwNzIwMzU2OSwiZXhwIjoxNjA3MjAzODY5fQ._p0d0C9ckdY-MbmIzisqlWR-GFIsJg6SP0PKSuIqEE0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:2020/credits?client=admin@elektra.cl&store=Maipu&amount=2500500",
+					"host": [
+						"localhost"
+					],
+					"port": "2020",
+					"path": [
+						"credits"
+					],
+					"query": [
+						{
+							"key": "client",
+							"value": "admin@elektra.cl"
+						},
+						{
+							"key": "store",
+							"value": "Maipu"
+						},
+						{
+							"key": "amount",
+							"value": "2500500"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Production - Health Check",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhY2Nlc3NfdG9rZW4iOiJmYWQ0ZWE1MDk5ZjY2ZjU3ZTcxYzExOTNiYzViZDg1NCIsImlhdCI6MTYwNzE5NTg2NywiZXhwIjoxNjA3NDk1ODY3fQ.Xy1gULymUO0gD4PsneRZddmpfrA_l8KDdHZkUAmQf8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "EC2Co-EcsEl-1W9L159AWPIQU-832645743.us-east-2.elb.amazonaws.com:2020/health",
+					"host": [
+						"EC2Co-EcsEl-1W9L159AWPIQU-832645743",
+						"us-east-2",
+						"elb",
+						"amazonaws",
+						"com"
+					],
+					"port": "2020",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Production - Authenticate User",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "oth3rPassw0rd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "support@ecredits.cl",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c3VwcG9ydEBlY3JlZGl0cdfgdsfgsdgdsfgsdfgdfy5jbDpvdGgzclBhc3N3MHJk",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "EC2Co-EcsEl-1W9L159AWPIQU-832645743.us-east-2.elb.amazonaws.com:2020/auth",
+					"host": [
+						"EC2Co-EcsEl-1W9L159AWPIQU-832645743",
+						"us-east-2",
+						"elb",
+						"amazonaws",
+						"com"
+					],
+					"port": "2020",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Production - Transaction History",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhY2Nlc3NfdG9rZW4iOiJjMDE3YjhhYzRlOTYzMDhlZWZmY2NkZDdkZGZiNjMxNCIsImlhdCI6MTYwNzIyNDY5NywiZXhwIjoxNjA3MjI0OTk3fQ.i9x85yDOxu3CduoZQ_jgeyMLdREx5gXFbmrfjL6p0CY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "EC2Co-EcsEl-1W9L159AWPIQU-832645743.us-east-2.elb.amazonaws.com:2020/transactions?store=Maipu&user=support@ecredits.cl",
+					"host": [
+						"EC2Co-EcsEl-1W9L159AWPIQU-832645743",
+						"us-east-2",
+						"elb",
+						"amazonaws",
+						"com"
+					],
+					"port": "2020",
+					"path": [
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "store",
+							"value": "Maipu"
+						},
+						{
+							"key": "user",
+							"value": "support@ecredits.cl"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Production - Store credits",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhY2Nlc3NfdG9rZW4iOiJjMDE3YjhhYzRlOTYzMDhlZWZmY2NkZDdkZGZiNjMxNCIsImlhdCI6MTYwNzIyNDY5NywiZXhwIjoxNjA3MjI0OTk3fQ.i9x85yDOxu3CduoZQ_jgeyMLdREx5gXFbmrfjL6p0CY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2020/credits?client=admin@elektra.cl&store=Los%20Leones&amount=550",
+					"host": [
+						"localhost"
+					],
+					"port": "2020",
+					"path": [
+						"credits"
+					],
+					"query": [
+						{
+							"key": "client",
+							"value": "admin@elektra.cl"
+						},
+						{
+							"key": "store",
+							"value": "Los%20Leones"
+						},
+						{
+							"key": "amount",
+							"value": "550"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Production - add Store credits",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhY2Nlc3NfdG9rZW4iOiJjMDE3YjhhYzRlOTYzMDhlZWZmY2NkZDdkZGZiNjMxNCIsImlhdCI6MTYwNzIyNDY5NywiZXhwIjoxNjA3MjI0OTk3fQ.i9x85yDOxu3CduoZQ_jgeyMLdREx5gXFbmrfjL6p0CY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:2020/credits?client=admin@elektra.cl&store=Los%20Leones&amount=550",
+					"host": [
+						"localhost"
+					],
+					"port": "2020",
+					"path": [
+						"credits"
+					],
+					"query": [
+						{
+							"key": "client",
+							"value": "admin@elektra.cl"
+						},
+						{
+							"key": "store",
+							"value": "Los%20Leones"
+						},
+						{
+							"key": "amount",
+							"value": "550"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Production - Substract Store credits",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhY2Nlc3NfdG9rZW4iOiJjMDE3YjhhYzRlOTYzMDhlZWZmY2NkZDdkZGZiNjMxNCIsImlhdCI6MTYwNzIyNDY5NywiZXhwIjoxNjA3MjI0OTk3fQ.i9x85yDOxu3CduoZQ_jgeyMLdREx5gXFbmrfjL6p0CY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:2020/credits?client=admin@elektra.cl&store=Los%20Leones&amount=550",
+					"host": [
+						"localhost"
+					],
+					"port": "2020",
+					"path": [
+						"credits"
+					],
+					"query": [
+						{
+							"key": "client",
+							"value": "admin@elektra.cl"
+						},
+						{
+							"key": "store",
+							"value": "Los%20Leones"
+						},
+						{
+							"key": "amount",
+							"value": "550"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
