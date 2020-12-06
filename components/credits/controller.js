@@ -4,7 +4,7 @@ const models = rfr('db/models').models;
 const storeCredits = async (req, res, next) => {
     try {
         const { store } = req.query;
-        const foundCredits = await models.store.findOne({ attributes: ['credit.credits'], where: { name: store }, include: { model: models.credit, attributes: ['credits'] } });
+        const foundCredits = await models.store.findOne({ attributes: ['credit.credits'], where: { name: decodeURIComponent(store) }, include: { model: models.credit, attributes: ['credits'] } });
         if (!foundCredits) {
             return res.status(404).send({ message: 'Store has no credit information' })
         }
@@ -20,7 +20,7 @@ const storeCredits = async (req, res, next) => {
 const addStoreCredits = async (req, res, next) => {
     try {
         const { store, amount } = req.query;
-        const foundCredits = await models.store.findOne({ where: { name: store }, include: { model: models.credit } });
+        const foundCredits = await models.store.findOne({ where: { name: decodeURIComponent(store) }, include: { model: models.credit } });
         if (!foundCredits) {
             return res.status(404).send({ message: 'Store has no credit information' })
         }
@@ -32,7 +32,7 @@ const addStoreCredits = async (req, res, next) => {
         }
         const history = await models.transaction.create({type : 1, amount : Math.floor(Math.abs(amount)), userId : req.userInfo.id, storeId : req.storeInfo.id },{ returning: ['id']  });
         if (!history && !history.id) {
-            console.error(`Could not save history for adding transaction on store: ${store}. Amount: ${amount}`);
+            console.error(`Could not save history for adding transaction on store: ${decodeURIComponent(store)}. Amount: ${amount}`);
         }
         return res.send({
             credits,
@@ -46,7 +46,7 @@ const addStoreCredits = async (req, res, next) => {
 const substractStoreCredits = async (req, res, next) => {
     try {
         const { store, amount } = req.query;
-        const foundCredits = await models.store.findOne({ where: { name: store }, include: { model: models.credit } });
+        const foundCredits = await models.store.findOne({ where: { name: decodeURIComponent(store) }, include: { model: models.credit } });
         if (!foundCredits) {
             return res.status(404).send({ message: 'Store has no credit information' })
         }
@@ -62,7 +62,7 @@ const substractStoreCredits = async (req, res, next) => {
         }
         const history = await models.transaction.create({type : 0, amount : Math.floor(Math.abs(amount)), userId : req.userInfo.id, storeId : req.storeInfo.id },{ returning: ['id']  });
         if (!history && !history.id) {
-            console.error(`Could not save history for adding transaction on store: ${store}. Amount: ${amount}`);
+            console.error(`Could not save history for adding transaction on store: ${decodeURIComponent(store)}. Amount: ${amount}`);
         }
         return res.send({
             credits: newCredits,
