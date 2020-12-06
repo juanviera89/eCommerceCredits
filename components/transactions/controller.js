@@ -7,7 +7,8 @@ const transactionHistory = async (req, res, next) => {
         const whereClause = {};
         if (storeInfo && storeInfo.id) whereClause.storeId = storeInfo.id;
         if (userInfo && userInfo.id) whereClause.userId = userInfo.id;
-        const query = Object.entries(whereClause).length ? { where : whereClause} : {}
+        const query = { order: [['transaction_date', 'DESC']] };
+        if (Object.entries(whereClause).length) query.where = whereClause;
         const foundTransactions = await models.transaction.findAll(query);
         return res.send({
             history: foundTransactions
@@ -18,4 +19,4 @@ const transactionHistory = async (req, res, next) => {
 
 }
 
-module.exports = {transactionHistory}
+module.exports = { transactionHistory }

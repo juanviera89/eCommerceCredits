@@ -3,7 +3,7 @@ const models = rfr('db/models').models;
 const { validationResult, query, header } = require('express-validator');
 
 const getInputs = [ //Input validators
-    query('store').optional().isString().trim().isLength({ min: 1, max: 64 }), query('user').optional().isString().trim().isLength({ min: 1, max: 64 }), header('Authorization').notEmpty().isString()
+    query('store').optional().isString().trim().isLength({ min: 1, max: 64 }), query('user').optional().isEmail().trim().isLength({ min: 1, max: 64 }), header('Authorization').notEmpty().isString()
 ]
 
 const translateQueryToId = async (req, res, next) => { // Save filters info in req 
