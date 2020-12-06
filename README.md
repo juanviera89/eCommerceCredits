@@ -113,11 +113,11 @@ in order to build project for deployment, the following commands are executed: *
  ***Must be previously logged with AWS CLI***
 1. aws ecr get-login --region us-east-1 --no-include-email
    *use login command result*
-2. docker build -t imageName .
+2. docker build -t ecommerce-credits .
     *in root folder*
-3. docker tag imageName:TAG imageUrl:TAG
+3. docker tag ecommerce-credits:latest 750466127305.dkr.ecr.us-east-2.amazonaws.com/ecommerce-credits:latest
     *TAG usually refers to enviroment or release*
-4. docker push  imageUrl:TAG
+4. docker push  750466127305.dkr.ecr.us-east-2.amazonaws.com/ecommerce-credits:latest
 
 ## Endpoint definitions
 
