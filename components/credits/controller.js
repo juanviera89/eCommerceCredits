@@ -21,7 +21,7 @@ const addStoreCredits = async (req, res, next) => {
     try {
         const { store, amount } = req.query;
         const foundCredits = await models.store.findOne({ where: { name: decodeURIComponent(store) }, include: { model: models.credit } });
-        if (!foundCredits) {
+        if (!foundCredits || !foundCredits.credit) {
             return res.status(404).send({ message: 'Store has no credit information' })
         }
         const credits = Number(((foundCredits || {}).credit || {}).credits) + Math.floor(Math.abs(amount)),
@@ -47,7 +47,7 @@ const substractStoreCredits = async (req, res, next) => {
     try {
         const { store, amount } = req.query;
         const foundCredits = await models.store.findOne({ where: { name: decodeURIComponent(store) }, include: { model: models.credit } });
-        if (!foundCredits) {
+        if (!foundCredits || !foundCredits.credit) {
             return res.status(404).send({ message: 'Store has no credit information' })
         }
         const prevCredits = Number(((foundCredits || {}).credit || {}).credits);
