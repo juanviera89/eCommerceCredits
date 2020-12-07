@@ -69,7 +69,7 @@ API definition file can be imported in Postman for testing purposes.
 
 ## Configurations
 
-   All configuration variables are disposed in a centralized files in  folder  **(./config)** , separated for each deployment and/or development enviroment. To define the enviroment, enviroment variable NODE_ENV must be set; if not set, [.env](./.env) would be readed and NODE_ENV would get the value specified in that file (Only if dev dependencies are installed). Patterns to setup configuration files are descrbibe at [default example](./config/default.json.example) and [enviroment example](./config/enviroment.json.example)
+   All configuration variables are disposed in a centralized files in  folder  **(./config)** , separated for each deployment and/or development enviroment. To define the enviroment, enviroment variable NODE_ENV must be set; if not set, "./.env" would be readed and NODE_ENV would get the value specified in that file (Only if dev dependencies are installed). Patterns to setup configuration files are descrbibe at [default example](./config/default.json.example) and [enviroment example](./config/enviroment.json.example)
 
    To get a config in the App, import config, and library will automatically load files related to actual enviroment specified by NODE_ENV
 

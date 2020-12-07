@@ -7,7 +7,7 @@ info:
     email: "juanviera89@gmail.com"
   license:
     name: "ISC"
-host: "petstore.swagger.io"
+host: "EC2Co-EcsEl-1W9L159AWPIQU-832645743.us-east-2.elb.amazonaws.com"
 basePath: "/"
 tags:
 - name: "auth"
