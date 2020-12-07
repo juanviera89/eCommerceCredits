@@ -5,7 +5,7 @@ const storeCredits = async (req, res, next) => {
     try {
         const { store } = req.query;
         const foundCredits = await models.store.findOne({ attributes: ['credit.credits'], where: { name: decodeURIComponent(store) }, include: { model: models.credit, attributes: ['credits'] } });
-        if (!foundCredits) {
+        if (!foundCredits || !foundCredits.credit) {
             return res.status(404).send({ message: 'Store has no credit information' })
         }
         const result = Number(((foundCredits || {}).credit || {}).credits || 0);
